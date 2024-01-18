@@ -7,31 +7,6 @@ import { useState, useEffect } from "react";
 const createPromo = process.env.NEXT_PUBLIC_API_CREATE_PROMO as string;
 const apiKey = process.env.NEXT_PUBLIC_API_TOKEN as string;
 
-// export async function getServerSideProps() {
-//   try {
-//     const res = await axios.get(createPromo, {
-//       headers: {
-//         apiKey: `${apiKey}`,
-//         "Content-Type": "application/json",
-//       },
-//     });
-//     const createData = res.data.data;
-
-//     return {
-//       props: {
-//         createData,
-//       },
-//     };
-//   } catch (error) {
-//     console.error("Error fetching data:", error);
-//     return {
-//       props: {
-//         userData: [],
-//       },
-//     };
-//   }
-// }
-
 const create = ({ createData }: any) => {
   const sendAccessToken = async () => {
     try {
