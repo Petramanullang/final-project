@@ -2,7 +2,7 @@
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const createPromo = process.env.NEXT_PUBLIC_API_CREATE_PROMO as string;
 const apiKey = process.env.NEXT_PUBLIC_API_TOKEN as string;
@@ -38,9 +38,7 @@ const create = ({ createData }: any) => {
   };
 
   // Call the function to send access token when the component mounts
-  useEffect(() => {
-    sendAccessToken();
-  }, []);
+  
   return (
     <>
       <div>
