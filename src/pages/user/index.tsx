@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Skeleton } from "@/components/skeleton";
 
-const apiUser = process.env.NEXT_PUBLIC_API_USER as string;
+const apiUrl = process.env.NEXT_PUBLIC_API as string;
 const apiKey = process.env.NEXT_PUBLIC_API_TOKEN as string;
 
 const User = ({ imageUrl }: any) => {
@@ -24,7 +24,8 @@ const User = ({ imageUrl }: any) => {
           return;
         }
 
-        const res = await axios.get(apiUser, {
+        const apiUrl = process.env.NEXT_PUBLIC_API as string;
+        const res = await axios.get(`${apiUrl}/api/v1/all-user`, {
           headers: {
             apiKey: `${apiKey}`,
             "Content-Type": "application/json",

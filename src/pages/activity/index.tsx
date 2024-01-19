@@ -3,12 +3,12 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 
-const apiActivity = process.env.NEXT_PUBLIC_API_ACTIVITY as string;
+const apiUrl = process.env.NEXT_PUBLIC_API as string;
 const apiKey = process.env.NEXT_PUBLIC_API_TOKEN as string;
 
 export async function getServerSideProps() {
   try {
-    const res = await axios.get(apiActivity, {
+    const res = await axios.get(`${apiUrl}/api/v1/activities`, {
       headers: {
         apiKey: `${apiKey}`,
         "Content-Type": "application/json",
@@ -32,7 +32,6 @@ export async function getServerSideProps() {
 }
 
 const Activity = ({ activityData }: any) => {
-  console.log(activityData);
   return (
     <div>
       <ul>

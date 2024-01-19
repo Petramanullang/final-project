@@ -2,12 +2,12 @@
 import axios from "axios";
 import Image from "next/image";
 
-const apiCategory = process.env.NEXT_PUBLIC_API_CATEGORY as string;
+const apiUrl = process.env.NEXT_PUBLIC_API as string;
 const apiKey = process.env.NEXT_PUBLIC_API_TOKEN as string;
 
 export async function getServerSideProps() {
   try {
-    const res = await axios.get(apiCategory, {
+    const res = await axios.get(`${apiUrl}/api/v1/categories`, {
       headers: {
         apiKey: `${apiKey}`,
         "Content-Type": "application/json",

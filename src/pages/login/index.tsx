@@ -3,11 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-// const apiUrl =
-//   "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/login";
-// const apiKey = "24405e01-fbc1-45a5-9f5a-be13afcd757c";
-
-const apiUrl = process.env.NEXT_PUBLIC_API_LOGIN as string;
+const apiUrl = process.env.NEXT_PUBLIC_API as string;
 const apiKey = process.env.NEXT_PUBLIC_API_TOKEN as string;
 
 const Login = () => {
@@ -21,7 +17,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        apiUrl,
+        `${apiUrl}/api/v1/login`,
         { email, password },
         {
           headers: {
