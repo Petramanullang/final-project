@@ -1,6 +1,5 @@
 "use client";
 import axios from "axios";
-import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Skeleton } from "@/components/element/skeleton/skeleton";
@@ -65,22 +64,17 @@ const User = ({ imageUrl }: any) => {
     <>
       <div>
         {loading && (
-          <div className="grid grid-cols-3 m-0 p-10 gap-5">
+          <>
             <Skeleton />
             <Skeleton />
             <Skeleton />
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
-          </div>
+          </>
         )}
         {!loading && (
-          <ul className="grid grid-cols-3 gap-4 place-items-center">
+          <ul className="grid grid-cols-3 gap-4">
             {userData.map((user: any) => (
               <li key={user.id}>
                 <img
-                  width={500}
-                  height={500}
                   alt={user.name}
                   src={modifyImageUrl(user.profilePictureUrl)}
                   className="w-56 h-56 border"

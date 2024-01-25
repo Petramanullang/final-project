@@ -1,7 +1,15 @@
+"use client";
 import React from "react";
 import Head from "next/head";
+import Link from "next/link";
+import Banner from "@/components/home/banner/banner";
+import Category from "@/components/home/category";
+import Promo from "@/components/home/promo";
+import Activity from "@/components/home/activity";
+import Navbar from "@/components/home/navbar";
+import Footer from "@/components/home/footer";
 
-const index = () => {
+const index: React.FC = () => {
   return (
     <>
       <Head>
@@ -10,6 +18,16 @@ const index = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <div>
+        <div className="bg-[#fefffe] p-7 pt-0">
+          <Navbar />
+          <Banner />
+          <Activity />
+          <Promo />
+          <Category />
+          <Footer />
+        </div>
+      </div>
     </>
   );
 };

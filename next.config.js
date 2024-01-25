@@ -27,6 +27,24 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "seaworld.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.arestravel.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "imgs.search.brave.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };
