@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import {
-  Navbar,
   Typography,
   Button,
   Menu,
@@ -25,47 +24,62 @@ import {
   PowerIcon,
   RocketLaunchIcon,
   Bars2Icon,
+  AdjustmentsHorizontalIcon,
 } from "@heroicons/react/24/solid";
-
-const profileMenuItems = [
-  {
-    label: "My Profile",
-    icon: UserCircleIcon,
-  },
-  {
-    label: "Edit Profile",
-    icon: Cog6ToothIcon,
-  },
-  {
-    label: "Inbox",
-    icon: InboxArrowDownIcon,
-  },
-  {
-    label: "Help",
-    icon: LifebuoyIcon,
-  },
-  {
-    label: "Sign Out",
-    icon: PowerIcon,
-  },
-];
 
 const navListItems = [
   {
-    label: "About Us",
+    label: "About us",
   },
   {
-    label: "Blocks",
+    label: "Promo",
   },
   {
     label: "Blog",
   },
 ];
 
-function ProfileMenu() {
+function ProfileMenu({ router }: any) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const closeMenu = () => setIsMenuOpen(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    router.push("/login");
+  };
+
+  const profileMenuItems = [
+    {
+      label: "Dashboard",
+      icon: AdjustmentsHorizontalIcon,
+    },
+    {
+      label: "Edit Profile",
+      icon: Cog6ToothIcon,
+    },
+    {
+      label: "Log out",
+      icon: PowerIcon,
+      onClick: handleLogout,
+    },
+  ];
+
+  const hasAccessToken =
+    typeof window !== "undefined" && !!localStorage.getItem("accessToken");
+
+  if (!hasAccessToken) {
+    return (
+      <Button
+        placeholder={""}
+        variant="text"
+        color="blue-gray"
+        onClick={() => router.push("/login")}
+        className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto">
+        Login
+      </Button>
+    );
+  }
 
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
@@ -92,13 +106,16 @@ function ProfileMenu() {
         </Button>
       </MenuHandler>
       <MenuList placeholder={""} className="p-1">
-        {profileMenuItems.map(({ label, icon }, key) => {
+        {profileMenuItems.map(({ label, icon, onClick }, key) => {
           const isLastItem = key === profileMenuItems.length - 1;
           return (
             <MenuItem
               placeholder={""}
               key={label}
-              onClick={closeMenu}
+              onClick={() => {
+                onClick && onClick();
+                closeMenu();
+              }}
               className={`flex items-center gap-2 rounded ${
                 isLastItem
                   ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
@@ -150,25 +167,35 @@ function NavList() {
 const NavbarLayout = () => {
   const router = useRouter();
   const [isNavOpen, setIsNavOpen] = React.useState(false);
+  const [hasScrolled, setHasScrolled] = React.useState(false);
 
   const toggleIsNavOpen = () => setIsNavOpen((cur) => !cur);
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.addEventListener(
       "resize",
       () => window.innerWidth >= 960 && setIsNavOpen(false)
     );
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("accessToken");
-    router.push("/login");
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      setHasScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
-      <Navbar
-        placeholder={""}
-        className="mx-auto max-w-screen-2xl bg-transparent p-2 lg:pl-6 border-none shadow-none">
+      <div
+        className={`mx-auto w-full bg-white fixed top-0 z-50 py-3 px-16 left-0 border-none transition-shadow ${
+          hasScrolled ? "shadow-md" : ""
+        }`}>
         <div className="relative mx-auto flex items-center justify-between text-blue-gray-900">
           <Typography
             placeholder={""}
@@ -196,12 +223,12 @@ const NavbarLayout = () => {
             className="absolute right-16">
             <span>Log In</span>
           </Button> */}
-          <ProfileMenu />
+          <ProfileMenu router={router} />
         </div>
         <Collapse open={isNavOpen} className="overflow-scroll">
           <NavList />
         </Collapse>
-      </Navbar>
+      </div>
     </>
   );
 };

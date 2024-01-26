@@ -1,4 +1,5 @@
 "use client";
+import { Button } from "@material-tailwind/react";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
@@ -35,29 +36,30 @@ const Activity = () => {
 
   return (
     <>
-      <div>
-        <h1 className="text-center text-3xl mt-10 font-bold">Top value for you</h1>
-        <ul className="grid grid-cols-3 place-items-center pt-10">
-          {activityData.map((activity: any) => (
-            <li key={activity.id}>
-              <h3 className="text-center">{activity.title}</h3>
-              {activity.imageUrls && activity.imageUrls.length > 0 ? (
-                activity.imageUrls.slice(0, 1).map((imageUrl: string, index: number) => (
-                  <Image
-                    key={index}
-                    src={imageUrl}
-                    alt={`${activity.title} Image ${index + 1}`}
-                    width={200}
-                    height={200}
-                    style={{ width: "auto", height: "auto" }}
-                  />
-                ))
-              ) : (
-                <p>No Images Available</p>
-              )}
-            </li>
+      <div className="mt-20">
+        <ul>
+          {activityData.slice(0, 1).map((activity: any) => (
+            <Link href={`/activity/${activity.id}`} key={activity.id}>
+              <li key={activity.id}>
+                {activity.imageUrls && activity.imageUrls.length > 0 ? (
+                  activity.imageUrls.map((imageUrl: string, index: number) => (
+                    <Image
+                      key={index}
+                      src={imageUrl}
+                      alt={`${activity.title} Image ${index + 1}`}
+                      width={1000}
+                      height={1000}
+                      className="rounded-3xl mx-auto object-cover w-[1330px] h-[600px]"
+                    />
+                  ))
+                ) : (
+                  <p>No Images Available</p>
+                )}
+              </li>
+            </Link>
           ))}
         </ul>
+        <p></p>
       </div>
     </>
   );

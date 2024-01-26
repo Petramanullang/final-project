@@ -19,11 +19,11 @@ const index: React.FC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <div className="bg-[#fefffe] p-7 pt-0">
+        <div className="bg-[#fefffe] p-0 pt-0">
           <Navbar />
           <Banner />
-          <Activity />
           <Promo />
+          <Activity />
           <Category />
           <Footer />
         </div>

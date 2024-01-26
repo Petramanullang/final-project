@@ -10,7 +10,7 @@ export const FooterList = () => {
 
 const Footer = () => {
   return (
-    <div className="">
+    <div className="px-7 pb-5">
       <div className="max-w-screen mx-auto mt-10">
         <footer className="p-4 bg-[#d6d7d6] rounded-xl sm:p-16 sm:pb-10 dark:bg-gray-800">
           <div className="md:flex md:justify-between">
