@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import { Skeleton } from "@/components/element/skeleton/skeleton";
 
 const apiUrl = process.env.NEXT_PUBLIC_API as string;
@@ -74,7 +75,9 @@ const User = ({ imageUrl }: any) => {
           <ul className="grid grid-cols-3 gap-4">
             {userData.map((user: any) => (
               <li key={user.id}>
-                <img
+                <Image
+                  width={500}
+                  height={500}
                   alt={user.name}
                   src={modifyImageUrl(user.profilePictureUrl)}
                   className="w-56 h-56 border"

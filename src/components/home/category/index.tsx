@@ -77,7 +77,10 @@ const Category = () => {
                     {categoryData.slice(0, 1).map((category: any) => (
                       <li key={category.id}>
                         <div className="focus:outline-none h-[675px] shadow-md border-gray-100 border-2 rounded-xl pb-3 mt-5">
-                          <img
+                          <Image
+                            alt="code editor"
+                            width={500}
+                            height={500}
                             className="focus:outline-none w-full h-4/5 object-cover rounded-2xl"
                             src={category.imageUrl}
                           />
@@ -100,7 +103,9 @@ const Category = () => {
                             <div
                               className="focus:outline-none shadow-md border-gray-100 border-2 rounded-xl mt-5"
                               aria-label="card 2">
-                              <img
+                              <Image
+                                width={500}
+                                height={500}
                                 className="focus:outline-none h-56 object-cover w-full rounded-xl"
                                 src={category.imageUrl}
                                 alt="games"
