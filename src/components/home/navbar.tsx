@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import {
   Typography,
@@ -40,7 +40,7 @@ const navListItems = [
 ];
 
 function ProfileMenu({ router }: any) {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const closeMenu = () => setIsMenuOpen(false);
 
@@ -53,10 +53,12 @@ function ProfileMenu({ router }: any) {
     {
       label: "Dashboard",
       icon: AdjustmentsHorizontalIcon,
+      onClick: () => router.push("/dashboard"),
     },
     {
       label: "Edit Profile",
       icon: Cog6ToothIcon,
+      onClick: () => router.push("/dashboard/user"),
     },
     {
       label: "Log out",
@@ -65,28 +67,10 @@ function ProfileMenu({ router }: any) {
     },
   ];
 
-  const hasAccessToken =
-    typeof window !== "undefined" && !!localStorage.getItem("accessToken");
-
-  if (!hasAccessToken) {
-    return (
-      <Button
-        placeholder={""}
-        variant="text"
-        color="blue-gray"
-        onClick={() => router.push("/login")}
-        className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto">
-        Login
-      </Button>
-    );
-  }
-
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
       <MenuHandler>
-        <Button
-          placeholder={""}
-          variant="text"
+        <div
           color="blue-gray"
           className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto">
           <Avatar
@@ -103,7 +87,7 @@ function ProfileMenu({ router }: any) {
               isMenuOpen ? "rotate-180" : ""
             }`}
           />
-        </Button>
+        </div>
       </MenuHandler>
       <MenuList placeholder={""} className="p-1">
         {profileMenuItems.map(({ label, icon, onClick }, key) => {
@@ -143,7 +127,7 @@ function ProfileMenu({ router }: any) {
 
 function NavList() {
   return (
-    <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center">
+    <ul className="flex">
       {navListItems.map(({ label }, key) => (
         <Typography
           placeholder={""}
@@ -152,11 +136,11 @@ function NavList() {
           href="#"
           variant="small"
           color="gray"
-          className="font-bold text-black text-base">
+          className="font-bold text-black text-lg">
           <MenuItem
             placeholder={""}
             className="flex items-center gap-2 lg:rounded-full">
-            <span className="text-gray-900"> {label}</span>
+            <span className="text-gray-900">{label}</span>
           </MenuItem>
         </Typography>
       ))}
@@ -166,10 +150,16 @@ function NavList() {
 
 const NavbarLayout = () => {
   const router = useRouter();
-  const [isNavOpen, setIsNavOpen] = React.useState(false);
-  const [hasScrolled, setHasScrolled] = React.useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const toggleIsNavOpen = () => setIsNavOpen((cur) => !cur);
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    setIsLoggedIn(!!token);
+  }, []);
 
   useEffect(() => {
     window.addEventListener(
@@ -196,15 +186,15 @@ const NavbarLayout = () => {
         className={`mx-auto w-full bg-white fixed top-0 z-50 py-3 px-16 left-0 border-none transition-shadow ${
           hasScrolled ? "shadow-md" : ""
         }`}>
-        <div className="relative mx-auto flex items-center justify-between text-blue-gray-900">
+        <div className="relative flex items-center text-blue-gray-900">
           <Typography
             placeholder={""}
             as="a"
             href="#"
-            className="mr-4 ml-2 cursor-pointer py-1.5 font-extrabold text-3xl">
+            className=" ml-2 cursor-pointer py-1.5 font-extrabold text-3xl">
             Destinify
           </Typography>
-          <div className="hidden lg:block mx-auto translate-x-20">
+          <div className="hidden lg:block ml-auto">
             <NavList />
           </div>
           <IconButton
@@ -216,14 +206,16 @@ const NavbarLayout = () => {
             className="ml-auto mr-2 lg:hidden">
             <Bars2Icon className="h-6 w-6" />
           </IconButton>
-          {/* <Button
-            placeholder={""}
-            size="sm"
-            variant="text"
-            className="absolute right-16">
-            <span>Log In</span>
-          </Button> */}
-          <ProfileMenu router={router} />
+          {!isLoggedIn && (
+            <Button
+              className="ml-auto"
+              size="md"
+              placeholder={""}
+              onClick={() => router.push("/login")}>
+              <span>Login</span>
+            </Button>
+          )}
+          {isLoggedIn && <ProfileMenu router={router} />}
         </div>
         <Collapse open={isNavOpen} className="overflow-scroll">
           <NavList />

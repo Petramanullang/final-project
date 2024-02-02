@@ -3,7 +3,7 @@ import axios from "axios";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import Marquee from "react-fast-marquee";
-import { Arrow } from "../category";
+import { Arrow } from "./category";
 import { Button } from "@material-tailwind/react";
 import Link from "next/link";
 
@@ -65,7 +65,11 @@ const Promo = () => {
         </Marquee>
       </ul>
       <Link href={`/promo`} className="grid place-items-center mt-5">
-        <Button placeholder={""} className="normal-case tracking-widest bg-white text-black px-10 rounded-2xl border-black border shadow-none">See all</Button>
+        <Button
+          placeholder={""}
+          className="normal-case tracking-widest bg-white text-black px-10 rounded-2xl border-black border shadow-none">
+          See all
+        </Button>
       </Link>
     </div>
   );

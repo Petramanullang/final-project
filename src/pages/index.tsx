@@ -2,12 +2,15 @@
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
-import Banner from "@/components/home/banner/banner";
+import Banner from "@/components/home/banner";
 import Category from "@/components/home/category";
 import Promo from "@/components/home/promo";
 import Activity from "@/components/home/activity";
 import Navbar from "@/components/home/navbar";
 import Footer from "@/components/home/footer";
+import Value from "@/components/home/value";
+import About from "@/components/home/about";
+import Booking from "@/components/home/booking";
 
 const index: React.FC = () => {
   return (
@@ -22,9 +25,12 @@ const index: React.FC = () => {
         <div className="bg-[#fefffe] p-0 pt-0">
           <Navbar />
           <Banner />
+          <Value />
           <Promo />
           <Activity />
+          <About />
           <Category />
+          <Booking />
           <Footer />
         </div>
       </div>
