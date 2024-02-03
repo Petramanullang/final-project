@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import axios from "axios";
 import Image from "next/image";
@@ -74,25 +75,30 @@ const Category = () => {
                 className="focus:outline-none mt-10">
                 <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-8">
                   <ul>
-                    {categoryData.slice(0, 1).map((category: any) => (
-                      <li key={category.id}>
-                        <div className="focus:outline-none h-[675px] shadow-md border-gray-100 border-2 rounded-xl pb-3 mt-5">
-                          <Image
-                            alt="code editor"
-                            width={500}
-                            height={500}
-                            className="focus:outline-none w-full h-4/5 object-cover rounded-2xl"
-                            src={category.imageUrl}
-                          />
-                          <div className="px-2 pt-3">
-                            <h1 className="focus:outline-none text-4xl text-gray-900 font-semibold tracking-wider">
-                              Travel to {category.name}
-                            </h1>
-                            <Arrow />
-                          </div>
-                        </div>
-                      </li>
-                    ))}
+                    {categoryData.slice(0, 1).map(
+                      (category: any) => (
+                        console.log(category),
+                        (
+                          <li key={category.id}>
+                            <div className="focus:outline-none h-[675px] shadow-md border-gray-100 border-2 rounded-xl pb-3 mt-5">
+                              <img
+                                alt="code editor"
+                                width={500}
+                                height={500}
+                                className="focus:outline-none w-full h-4/5 object-cover rounded-2xl"
+                                src={category.imageUrl}
+                              />
+                              <div className="px-2 pt-3">
+                                <h1 className="focus:outline-none text-4xl text-gray-900 font-semibold tracking-wider">
+                                  Travel to {category.name}
+                                </h1>
+                                <Arrow />
+                              </div>
+                            </div>
+                          </li>
+                        )
+                      )
+                    )}
                   </ul>
 
                   <div>
@@ -103,7 +109,7 @@ const Category = () => {
                             <div
                               className="focus:outline-none shadow-md border-gray-100 border-2 rounded-xl mt-5"
                               aria-label="card 2">
-                              <Image
+                              <img
                                 width={500}
                                 height={500}
                                 className="focus:outline-none h-56 object-cover w-full rounded-xl"

@@ -81,7 +81,7 @@ const Login = () => {
               className="mt-8 mb-20 w-80 max-w-screen-lg sm:w-96"
               onSubmit={handleSubmit}>
               <div className="mb-4 flex flex-col gap-6">
-                <Image
+                <img
                   alt="logo"
                   src="/img/plane.png"
                   width={500}
@@ -141,14 +141,14 @@ const Login = () => {
                 </Link>
               </p>
             </form>
-            <Image
+            <img
               alt="logo"
               src="/img/building1.png"
               width={200}
               height={200}
               className="absolute bottom-0 left-[42rem] w-56"
             />
-            <Image
+            <img
               alt="logo"
               src="/img/building2.png"
               width={200}

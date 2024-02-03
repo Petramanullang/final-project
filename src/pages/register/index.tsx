@@ -97,7 +97,7 @@ const Register: React.FC = () => {
           {/* Login Form */}
           <div className="flex w-1/2 justify-center items-center bg-white">
             <form className="mt-8 mb-10 w-[600px]" onSubmit={handleSubmit}>
-              <Image
+              <img
                 alt="logo"
                 src="/img/plane.png"
                 width={500}
@@ -188,14 +188,14 @@ const Register: React.FC = () => {
               </p>
             </form>
 
-            <Image
+            <img
               alt="logo"
               src="/img/building1.png"
               width={200}
               height={200}
               className="absolute bottom-0 left-[42rem] w-56"
             />
-            <Image
+            <img
               alt="logo"
               src="/img/building2.png"
               width={200}

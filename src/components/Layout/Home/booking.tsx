@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { Button } from "@material-tailwind/react";
 import axios from "axios";
@@ -8,7 +9,7 @@ import { useState, useEffect } from "react";
 const apiUrl = process.env.NEXT_PUBLIC_API as string;
 const apiKey = process.env.NEXT_PUBLIC_API_TOKEN as string;
 
-const Activity = () => {
+const Booking = () => {
   const [activityData, setActivityData] = useState([]);
 
   useEffect(() => {
@@ -36,20 +37,20 @@ const Activity = () => {
 
   return (
     <>
-      <div className="mt-20">
+      <div className="mb-10">
         <ul>
           {activityData.slice(0, 1).map((activity: any) => (
             <Link href={`/activity/${activity.id}`} key={activity.id}>
               <li key={activity.id}>
                 {activity.imageUrls && activity.imageUrls.length > 0 ? (
                   activity.imageUrls.map((imageUrl: string, index: number) => (
-                    <Image
+                    <img
                       key={index}
                       src={imageUrl}
                       alt={`${activity.title} Image ${index + 1}`}
                       width={1000}
                       height={1000}
-                      className="rounded-3xl mx-auto object-cover w-[1330px] h-[600px]"
+                      className="rounded-3xl mx-auto object-cover w-[1330px] h-[500px]"
                     />
                   ))
                 ) : (
@@ -65,4 +66,4 @@ const Activity = () => {
   );
 };
 
-export default Activity;
+export default Booking;

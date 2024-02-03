@@ -2,15 +2,15 @@
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
-import Banner from "@/components/home/banner";
-import Category from "@/components/home/category";
-import Promo from "@/components/home/promo";
-import Activity from "@/components/home/activity";
-import Navbar from "@/components/home/navbar";
-import Footer from "@/components/home/footer";
-import Value from "@/components/home/value";
-import About from "@/components/home/about";
-import Booking from "@/components/home/booking";
+import Banner from "@/components/Layout/Home/banner";
+import Category from "@/components/Layout/Home/category";
+import Promo from "@/components/Layout/Home/promo";
+import Activity from "@/components/Layout/Home/activity";
+import Navbar from "@/components/Layout/Home/navbar";
+import Footer from "@/components/Layout/Home/footer";
+import Value from "@/components/Layout/Home/value";
+import About from "@/components/Layout/Home/about";
+import Booking from "@/components/Layout/Home/booking";
 
 const index: React.FC = () => {
   return (

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import axios from "axios";
 import Image from "next/image";
@@ -42,9 +43,8 @@ const Promo = () => {
         <Marquee speed={30} className="rounded-md pt-5 pb-3 px-2">
           {promoData.slice(0, 5).map((promo: any) => (
             <li key={promo.id} className="shadow-sm rounded-xl border-2 ml-10">
-              <Image
+              <img
                 alt={promo.title}
-                priority
                 src={promo.imageUrl}
                 width={200}
                 height={200}

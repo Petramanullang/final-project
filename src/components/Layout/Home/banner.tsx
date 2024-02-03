@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
@@ -16,17 +17,17 @@ const apiKey = process.env.NEXT_PUBLIC_API_TOKEN as string;
 const Banner = () => {
   const [bannersData, setBannersData] = useState([]);
 
-  const handlePrev = () => {
-    if (bannersData.length > 0) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
+  // const handlePrev = () => {
+  //   if (bannersData.length > 0) {
+  //     window.scrollTo({ top: 0, behavior: "smooth" });
+  //   }
+  // };
 
-  const handleNext = () => {
-    if (bannersData.length > 0) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
+  // const handleNext = () => {
+  //   if (bannersData.length > 0) {
+  //     window.scrollTo({ top: 0, behavior: "smooth" });
+  //   }
+  // };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -122,10 +123,9 @@ const Banner = () => {
               )}>
               {bannersData.map((banner: any, index) => (
                 <div key={banner.id} className="rounded-2xl relative">
-                  <Image
+                  <img
                     width={2000}
                     height={200}
-                    priority
                     draggable={false}
                     src={banner.imageUrl}
                     alt={`image ${index + 1}`}

@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -20,7 +20,6 @@ const create = ({ createData }: any) => {
       const accessToken = res.data.accessToken;
 
       if (accessToken) {
-
         localStorage.setItem("accessToken", accessToken);
 
         console.log("Access token stored successfully:", accessToken);
@@ -32,14 +31,13 @@ const create = ({ createData }: any) => {
     }
   };
 
-  
   return (
     <>
       <div>
         {/* <ul>
           {createData.map((create: any) => (
             <li key={create.id}>
-              <Image
+              <img
                 alt={create.title}
                 priority
                 src={create.imageUrl}

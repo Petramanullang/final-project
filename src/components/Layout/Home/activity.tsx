@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 const apiUrl = process.env.NEXT_PUBLIC_API as string;
 const apiKey = process.env.NEXT_PUBLIC_API_TOKEN as string;
 
-const Booking = () => {
+const Activity = () => {
   const [activityData, setActivityData] = useState([]);
 
   useEffect(() => {
@@ -36,20 +36,20 @@ const Booking = () => {
 
   return (
     <>
-      <div className="mb-10">
+      <div className="mt-20">
         <ul>
           {activityData.slice(0, 1).map((activity: any) => (
             <Link href={`/activity/${activity.id}`} key={activity.id}>
               <li key={activity.id}>
                 {activity.imageUrls && activity.imageUrls.length > 0 ? (
                   activity.imageUrls.map((imageUrl: string, index: number) => (
-                    <Image
+                    <img
                       key={index}
                       src={imageUrl}
                       alt={`${activity.title} Image ${index + 1}`}
                       width={1000}
                       height={1000}
-                      className="rounded-3xl mx-auto object-cover w-[1330px] h-[500px]"
+                      className="rounded-3xl mx-auto object-cover w-[1330px] h-[600px]"
                     />
                   ))
                 ) : (
@@ -65,4 +65,4 @@ const Booking = () => {
   );
 };
 
-export default Booking;
+export default Activity;

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -75,7 +76,7 @@ const User = ({ imageUrl }: any) => {
           <ul className="grid grid-cols-3 gap-4">
             {userData.map((user: any) => (
               <li key={user.id}>
-                <Image
+                <img
                   width={500}
                   height={500}
                   alt={user.name}

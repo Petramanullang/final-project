@@ -4,8 +4,8 @@ import { MenuItem } from "@material-tailwind/react";
 import {
   WalletIcon,
   PaperAirplaneIcon,
-  UsersIcon,
   BanknotesIcon,
+  UserGroupIcon,
 } from "@heroicons/react/24/outline";
 
 const valueList = [
@@ -21,7 +21,7 @@ const valueList = [
   },
   {
     label: "Best tour guide",
-    icon: UsersIcon,
+    icon: UserGroupIcon,
     description: "Our best tour guid is ready to guide your trip",
   },
   {
@@ -35,7 +35,9 @@ const Value = () => {
   return (
     <div className="flex flex-col justify-center items-center my-10">
       <h1 className="text-5xl font-bold">Top values for you</h1>
-      <p className="my-5 font-medium">Try variety of benefits when using our services</p>
+      <p className="my-5 font-medium">
+        Try variety of benefits when using our services
+      </p>
 
       <ul className="flex gap-5">
         {valueList.map(({ label, icon, description }, key) => (
