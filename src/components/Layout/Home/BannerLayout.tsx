@@ -34,7 +34,7 @@ const Banner = () => {
 
   return (
     <>
-      <div className="px-7 pt-3 mt-16">
+      <div className="px-3 lg:px-7 pt-3 mt-16">
         <div className="relative rounded-full">
           {bannersData.length > 0 && (
             <Carousel
