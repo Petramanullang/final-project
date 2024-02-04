@@ -33,7 +33,7 @@ const valueList = [
 
 const Value = () => {
   return (
-    <div className="flex flex-col justify-center items-center my-10">
+    <div className="flex flex-col justify-center items-center my-20">
       <h1 className="text-5xl font-bold">Top values for you</h1>
       <p className="my-5 font-medium">
         Try variety of benefits when using our services

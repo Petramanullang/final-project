@@ -1,9 +1,9 @@
 import axios from "axios";
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
+import Swal from "sweetalert2";
 
 const apiUrl = process.env.NEXT_PUBLIC_API as string;
 const apiKey = process.env.NEXT_PUBLIC_API_TOKEN as string;
@@ -44,14 +44,23 @@ const Login = () => {
       router.push("/");
       localStorage.setItem("accessToken", response.data.token);
       console.log(response.data);
+      Swal.fire({
+        title: "Success",
+        text: "Do you want to continue",
+        icon: "success",
+        confirmButtonText: "Submit",
+      });
     } catch (error: any) {
       if (error.response) {
         if (error.response.status === 401) {
           setError("Invalid API KEY");
         } else {
-          setError(
-            error.response.data.message || "An unexpected error occurred"
-          );
+          Swal.fire({
+            title: "Error",
+            text: error.response.data.message,
+            icon: "error",
+            confirmButtonText: "Cool",
+          });
         }
       } else {
         setError("An unexpected error occurred");
@@ -108,7 +117,7 @@ const Login = () => {
                 </div>
                 <div className="relative h-11 w-full min-w-[200px]">
                   <input
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     autoComplete="on"
@@ -116,6 +125,15 @@ const Login = () => {
                     placeholder=" "
                   />
                   <label className={labelStyle()}>Password</label>
+                  <div
+                    className="absolute right-3 top-3 cursor-pointer"
+                    onClick={() => setShowPassword(!showPassword)}>
+                    {showPassword ? (
+                      <EyeSlashIcon className="h-6 w-6 text-blue-400" />
+                    ) : (
+                      <EyeIcon className="h-6 w-6 text-blue-400" />
+                    )}
+                  </div>
                 </div>
               </div>
               <div className="flex justify-end items-center">

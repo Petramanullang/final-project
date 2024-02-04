@@ -21,18 +21,18 @@ const index: React.FC = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
-        <div className="bg-[#fefffe] p-0 pt-0">
-          <Navbar />
-          <Banner />
+      <div className="bg-[#fefffe] ">
+        <Navbar />
+        <Banner />
+        <div className="px-16 pt-0 hidden sm:block">
           <Value />
           <Promo />
           <Activity />
           <About />
           <Category />
           <Booking />
-          <Footer />
         </div>
+        <Footer />
       </div>
     </>
   );

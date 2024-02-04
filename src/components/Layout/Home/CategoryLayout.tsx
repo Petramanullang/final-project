@@ -1,37 +1,21 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 import axios from "axios";
-import Image from "next/image";
 import { useState, useEffect } from "react";
+import { Chip } from "@material-tailwind/react";
+import { Arrow } from "@/components/Fragments/Global/Arrow";
+import { useRouter } from "next/router";
 
-export const Arrow = () => {
+export const ChipCustom = ({ text }: any) => {
   return (
-    <div className="w-full flex justify-end">
-      <button className="focus:outline-none focus:ring-2 ring-offset-2 focus:ring-gray-600 hover:opacity-75 justify-end flex items-center cursor-pointer rounded-full bg-black p-3">
-        <svg
-          className=" text-white"
-          xmlns="http://www.w3.org/2000/svg"
-          width={15}
-          height={15}
-          viewBox="0 0 20 18"
-          fill="none">
-          <path
-            d="M11.7998 1L18.9998 8.53662L11.7998 16.0732"
-            stroke="currentColor"
-            strokeWidth={2}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M1 8.53662H19"
-            stroke="currentColor"
-            strokeWidth={2}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </button>
-    </div>
+    <Chip
+      variant="ghost"
+      value={
+        <p className="text-sm text-gray-700 font-OpenSans font-thin normal-case">
+          {text}
+        </p>
+      }
+      className="rounded-xl"
+    />
   );
 };
 
@@ -40,6 +24,7 @@ const apiKey = process.env.NEXT_PUBLIC_API_TOKEN as string;
 
 const Category = () => {
   const [categoryData, setCategoryData] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,7 +52,7 @@ const Category = () => {
     <>
       <div>
         <div>
-          <div id="blog" className=" px-4 xl:px-4 py-14">
+          <div id="category" className="py-14">
             <div className="mx-auto container">
               <div
                 tabIndex={0}
@@ -77,7 +62,7 @@ const Category = () => {
                   <ul>
                     {categoryData.slice(0, 1).map((category: any) => (
                       <li key={category.id}>
-                        <div className="focus:outline-none h-[675px] shadow-md border-gray-100 border-2 rounded-xl pb-3 mt-5">
+                        <div className="focus:outline-none h-[695px] shadow-md border-gray-100 border-2 rounded-xl pb-3 mt-5">
                           <img
                             alt="code editor"
                             width={500}
@@ -86,10 +71,19 @@ const Category = () => {
                             src={category.imageUrl}
                           />
                           <div className="px-2 pt-3">
-                            <h1 className="focus:outline-none text-4xl text-gray-900 font-semibold tracking-wider">
+                            <h1 className="focus:outline-none text-4xl font-OpenSans text-gray-900 font-extrabold  tracking-wider">
                               Travel to {category.name}
                             </h1>
-                            <Arrow />
+                            <div className="flex gap-3 normal-case translate-y-4">
+                              <ChipCustom text="Tours" />
+                              <ChipCustom text={category.name} />
+                              <ChipCustom text="Travels" />
+                              <Arrow
+                                onClick={() =>
+                                  router.push(`/category/${category.id}`)
+                                }
+                              />
+                            </div>
                           </div>
                         </div>
                       </li>
@@ -111,13 +105,22 @@ const Category = () => {
                                 src={category.imageUrl}
                                 alt="games"
                               />
-                              <div className="bg-white px-3 lg:px-6 py-4 rounded-bl-3xl rounded-br-3xl">
+                              <div className="bg-white px-3 py-4 rounded-bl-3xl rounded-br-3xl">
                                 <h1
                                   tabIndex={0}
-                                  className="focus:outline-none text-lg text-gray-900 font-semibold tracking-wider">
+                                  className="focus:outline-none text-2xl text-gray-900 font-OpenSans font-extrabold tracking-wider">
                                   Travel to {category.name}
                                 </h1>
-                                <Arrow />
+                                <div className="flex gap-3 normal-case translate-y-3 my-1">
+                                  <ChipCustom text="Tours" />
+                                  <ChipCustom text={category.name} />
+                                  <ChipCustom text="Travels" />
+                                  <Arrow
+                                    onClick={() =>
+                                      router.push(`/category/${category.id}`)
+                                    }
+                                  />
+                                </div>
                               </div>
                             </div>
                           </li>

@@ -37,6 +37,9 @@ const navListItems = [
   {
     label: "Blog",
   },
+  {
+    label: "FAQ",
+  },
 ];
 
 function ProfileMenu({ router }: any) {
@@ -140,7 +143,9 @@ function NavList() {
           <MenuItem
             placeholder={""}
             className="flex items-center gap-2 lg:rounded-full">
-            <span className="text-gray-900">{label}</span>
+            <span className="text-gray-900 font-OpenSans font-thin">
+              {label}
+            </span>
           </MenuItem>
         </Typography>
       ))}

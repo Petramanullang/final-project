@@ -1,8 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 import { Button } from "@material-tailwind/react";
 import axios from "axios";
-import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
@@ -39,7 +37,7 @@ const Booking = () => {
     <>
       <div className="mb-10">
         <ul>
-          {activityData.slice(0, 1).map((activity: any) => (
+          {activityData.slice(1, 2).map((activity: any) => (
             <Link href={`/activity/${activity.id}`} key={activity.id}>
               <li key={activity.id}>
                 {activity.imageUrls && activity.imageUrls.length > 0 ? (
@@ -50,13 +48,23 @@ const Booking = () => {
                       alt={`${activity.title} Image ${index + 1}`}
                       width={1000}
                       height={1000}
-                      className="rounded-3xl mx-auto object-cover w-[1330px] h-[500px]"
+                      className="rounded-3xl mx-auto object-cover w-[1330px] h-[500px] brightness-75"
                     />
                   ))
                 ) : (
                   <p>No Images Available</p>
                 )}
               </li>
+              <div className="absolute translate-x-72 -translate-y-96 flex flex-col justify-center items-center">
+                <p className="px-2 py-1 text-white text-center text-8xl font-[500]">
+                  Let&apos;s get to know <br /> the world
+                </p>
+                <Button
+                  placeholder={""}
+                  className="w-1/4 mt-10 bg-white py-3 text-black text-lg normal-case object-fit">
+                  Book now
+                </Button>
+              </div>
             </Link>
           ))}
         </ul>

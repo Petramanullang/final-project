@@ -1,7 +1,5 @@
 "use client";
-import { Button } from "@material-tailwind/react";
 import axios from "axios";
-import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
@@ -49,7 +47,7 @@ const Activity = () => {
                       alt={`${activity.title} Image ${index + 1}`}
                       width={1000}
                       height={1000}
-                      className="rounded-3xl mx-auto object-cover w-[1330px] h-[600px]"
+                      className="rounded-3xl mx-auto object-cover w-full h-[600px]"
                     />
                   ))
                 ) : (

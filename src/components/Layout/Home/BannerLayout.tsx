@@ -1,33 +1,13 @@
-/* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Image from "next/image";
 import Link from "next/link";
-import {
-  Carousel,
-  Typography,
-  Button,
-  IconButton,
-} from "@material-tailwind/react";
-import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
+import { Carousel, IconButton } from "@material-tailwind/react";
 
 const apiUrl = process.env.NEXT_PUBLIC_API as string;
 const apiKey = process.env.NEXT_PUBLIC_API_TOKEN as string;
 
 const Banner = () => {
   const [bannersData, setBannersData] = useState([]);
-
-  // const handlePrev = () => {
-  //   if (bannersData.length > 0) {
-  //     window.scrollTo({ top: 0, behavior: "smooth" });
-  //   }
-  // };
-
-  // const handleNext = () => {
-  //   if (bannersData.length > 0) {
-  //     window.scrollTo({ top: 0, behavior: "smooth" });
-  //   }
-  // };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,10 +35,13 @@ const Banner = () => {
   return (
     <>
       <div className="px-7 pt-3 mt-16">
-        <div className="relative rounded-2xl">
+        <div className="relative rounded-full">
           {bannersData.length > 0 && (
             <Carousel
               transition={{ type: "tween", duration: 1 }}
+              // autoplay
+              // autoplayDelay={5000}
+              loop
               className="rounded-2xl"
               slideRef={() => {}}
               placeholder={"blank"}
@@ -69,7 +52,7 @@ const Banner = () => {
                   color="white"
                   size="lg"
                   onClick={handlePrev}
-                  className="!absolute top-3/4 left-2 translate-y-10 translate-x-28 border rounded-full">
+                  className="!absolute bottom-14 lg:top-3/4 left-2 translate-y-10 lg:translate-x-28 border rounded-full">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -92,7 +75,7 @@ const Banner = () => {
                   color="white"
                   size="lg"
                   onClick={handleNext}
-                  className="!absolute top-3/4 left-2 translate-y-10 translate-x-48 border rounded-full">
+                  className="!absolute bottom-14 lg:op-3/4 left-2 translate-y-10 translate-x-20 lg:translate-x-48 border rounded-full">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -129,29 +112,22 @@ const Banner = () => {
                     draggable={false}
                     src={banner.imageUrl}
                     alt={`image ${index + 1}`}
-                    className="h-[90vh] w-full object-cover rounded-2xl brightness-75"
+                    className="h-[90vh] w-full object-cover brightness-75"
                   />
                   <div>
-                    <p
-                      color="white"
-                      className=" absolute text-7xl w-[50vw] top-1/4 left-1/4 -translate-x-64 -translate-y-2/4">
+                    <p className="absolute font-thin lg:font-semibold text-4xl lg:text-7xl lg:w-[50vw] top-10 lg:top-1/4 left-5 lg:left-1/4 lg:-translate-x-64 lg:-translate-y-2/4 text-white">
                       Explore the sights
                     </p>
-                    <p
-                      color="white"
-                      className="absolute text-7xl w-[50vw] top-1/4 left-1/4 -translate-x-64 translate-y-14">
+                    <p className="absolute font-thin lg:font-semibold text-4xl lg:text-7xl lg:w-[50vw] top-10 lg:top-1/4 left-5 lg:left-1/4 lg:-translate-x-64 translate-y-[44px] lg:translate-y-14 text-white ">
                       of the {banner.name}
                     </p>
-                    <Typography
-                      placeholder={"blank"}
-                      variant="h2"
-                      className="absolute top-2/4 left-1/4 -translate-x-64 translate-y-5 text-white text-xl font-medium">
+                    <p className="absolute font-extralight lg:font-medium w-56 lg:w-full top-44 lg:top-2/4 left-5 lg:left-1/4 lg:-translate-x-60 lg:translate-y-5 text-white text-xl">
                       A place where nature and adventure unite
-                    </Typography>
+                    </p>
                     <Link
                       href={""}
-                      className="absolute top-3/4 left-2 -translate-y-16 translate-x-28 py-3 px-10 bg-white text-black normal-case rounded-lg font-semibold">
-                      Book Now
+                      className="absolute top-64 lg:top-3/4 left-5 lg:left-2 lg:translate-x-28 translate-y-2 lg:-translate-y-16 py-3 px-10 bg-white text-black normal-case rounded-2xl font-semibold">
+                      Book now
                     </Link>
                   </div>
                 </div>
