@@ -33,35 +33,31 @@ const valueList = [
 
 const Value = () => {
   return (
-    <div className="flex flex-col justify-center items-center my-20">
+    <div className="flex flex-col lg:justify-center lg:items-center mt-8 lg:my-20">
       <h1 className="text-5xl font-bold">Top values for you</h1>
-      <p className="my-5 font-medium">
+      <p className="my-5 font-extralight lg:font-medium w-64 lg:w-full">
         Try variety of benefits when using our services
       </p>
 
-      <ul className="flex gap-5">
+      <ul className="relative lg:flex gap-5 -translate-x-2 lg:-translate-x-0 ">
         {valueList.map(({ label, icon, description }, key) => (
           <li key={label} className="pointer-events-none">
-            <Typography
-              placeholder={""}
-              as="a"
-              href="#"
-              variant="small"
-              color="gray"
-              className="font-bold text-black text-lg">
+            <div className="font-bold text-black text-lg mb-8">
               <MenuItem
                 placeholder={""}
-                className="flex flex-col items-center gap-2 hover:bg-transparent">
+                className="flex lg:flex-col items-center gap-3 lg:gap-2 hover:bg-transparent">
                 {React.createElement(icon, {
-                  className: "h-14 w-14 bg-gray-200 rounded-full p-3",
+                  className: "w-16 bg-gray-200 rounded-full p-3",
                   strokeWidth: 1.5,
                 })}
-                <span className="text-gray-900">{label}</span>
-                <span className="text-gray-600 text-xs text-center w-2/3">
-                  {description}
-                </span>
+                <div className="flex flex-col lg:m-0">
+                  <span className="text-black mb-1 lg:mb-0">{label}</span>
+                  <span className="text-gray-600 text-sm w-44 lg:w-2/3 lg:text-center ">
+                    {description}
+                  </span>
+                </div>
               </MenuItem>
-            </Typography>
+            </div>
           </li>
         ))}
       </ul>
