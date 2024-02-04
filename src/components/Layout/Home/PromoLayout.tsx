@@ -4,7 +4,7 @@ import axios from "axios";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import Marquee from "react-fast-marquee";
-import { Arrow } from "./category";
+import { Arrow } from "./CategoryLayout";
 import { Button } from "@material-tailwind/react";
 import Link from "next/link";
 
@@ -54,7 +54,10 @@ const Promo = () => {
                 <p className="text-left">{promo.title}</p>
                 <p className="text-left mt-3">
                   <span className="font-bold">
-                    Rp.{promo.promo_discount_price}
+                    Rp.
+                    {promo.promo_discount_price
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
                   </span>
                   /person
                 </p>

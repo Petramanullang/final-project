@@ -132,18 +132,16 @@ const Banner = () => {
                     className="h-[90vh] w-full object-cover rounded-2xl brightness-75"
                   />
                   <div>
-                    <Typography
-                      placeholder={"blank"}
+                    <p
                       color="white"
-                      className="absolute text-7xl w-[50vw] font-semibold top-1/4 left-1/4 -translate-x-64 -translate-y-2/4">
+                      className=" absolute text-7xl w-[50vw] top-1/4 left-1/4 -translate-x-64 -translate-y-2/4">
                       Explore the sights
-                    </Typography>
-                    <Typography
-                      placeholder={"blank"}
+                    </p>
+                    <p
                       color="white"
-                      className="absolute text-7xl w-[50vw] font-semibold top-1/4 left-1/4 -translate-x-64 translate-y-14">
+                      className="absolute text-7xl w-[50vw] top-1/4 left-1/4 -translate-x-64 translate-y-14">
                       of the {banner.name}
-                    </Typography>
+                    </p>
                     <Typography
                       placeholder={"blank"}
                       variant="h2"

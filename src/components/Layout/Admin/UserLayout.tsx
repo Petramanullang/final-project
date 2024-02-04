@@ -4,7 +4,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { Skeleton } from "@/components/element/skeleton/skeleton";
+import { Skeleton } from "@/components/Element/Skeleton";
 
 const apiUrl = process.env.NEXT_PUBLIC_API as string;
 const apiKey = process.env.NEXT_PUBLIC_API_TOKEN as string;
