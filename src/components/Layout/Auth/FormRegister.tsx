@@ -81,7 +81,7 @@ const Register: React.FC = () => {
 
   return (
     <>
-      <div className="bg-auth-image bg-cover h-[150vh] lg:h-auto brightness-95 lg:bg-none">
+      <div className="bg-auth-image lg:h-auto brightness-95 lg:bg-none">
         <div className="h-screen flex">
           {/* Login Image */}
           <div className="hidden lg:flex w-1/2 bg-auth-image bg-cover justify-around pt-20 z-10">
@@ -97,7 +97,7 @@ const Register: React.FC = () => {
           </div>
 
           {/* Register Form */}
-          <div className="bg-transparent flex mx-auto w-5/6 lg:w-1/2 justify-center items-center mt-64 lg:mt-0">
+          <div className="bg-transparent flex mx-auto w-5/6 lg:w-1/2 justify-center items-center mt-10 lg:mt-0">
             <form className="mt-8 mb-10 w-[600px] " onSubmit={handleSubmit}>
               <img
                 alt="logo"
@@ -143,9 +143,9 @@ const Register: React.FC = () => {
                     className="absolute right-3 top-3 cursor-pointer"
                     onClick={() => setShowPassword(!showPassword)}>
                     {showPassword ? (
-                      <EyeSlashIcon className="h-6 w-6 text-blue-400" />
+                      <EyeSlashIcon className="h-6 w-6 text-white lg:text-blue-400" />
                     ) : (
-                      <EyeIcon className="h-6 w-6 text-blue-400" />
+                      <EyeIcon className="h-6 w-6 text-white lg:text-blue-400" />
                     )}
                   </div>
                 </div>
@@ -163,9 +163,9 @@ const Register: React.FC = () => {
                     className="absolute right-3 top-3 cursor-pointer"
                     onClick={() => setShowPassword(!showPassword)}>
                     {showPassword ? (
-                      <EyeSlashIcon className="h-6 w-6 text-blue-400" />
+                      <EyeSlashIcon className="h-6 w-6 text-white lg:text-blue-400" />
                     ) : (
-                      <EyeIcon className="h-6 w-6 text-blue-400" />
+                      <EyeIcon className="h-6 w-6 text-white lg:text-blue-400" />
                     )}
                   </div>
                 </div>

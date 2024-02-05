@@ -85,7 +85,7 @@ const Login = () => {
           </div>
 
           {/* Login Form */}
-          <div className="bg-transparent flex mx-auto lg:w-1/2 justify-center items-center">
+          <div className="bg-transparent flex mx-auto lg:w-1/2 justify-center mt-40 lg:items-center">
             <form
               className="lg:mt-8 lg:mb-20 lg:w-80 max-w-screen-lg"
               onSubmit={handleSubmit}>
