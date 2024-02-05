@@ -5,12 +5,13 @@ import { Chip } from "@material-tailwind/react";
 import { Arrow } from "@/components/Fragments/Global/Arrow";
 import { useRouter } from "next/router";
 
-export const ChipCustom = ({ text }: any) => {
+export const ChipCustom = ({ text, className }: any) => {
   return (
     <Chip
       variant="ghost"
       value={
-        <p className="text-sm text-gray-700 font-OpenSans font-thin normal-case">
+        <p
+          className={`text-sm text-gray-700 font-OpenSans font-thin normal-case ${className}`}>
           {text}
         </p>
       }
@@ -52,7 +53,7 @@ const Category = () => {
     <>
       <div>
         <div>
-          <div id="category" className="py-14">
+          <div id="category" className="lg:py-14">
             <div className="mx-auto container">
               <div
                 tabIndex={0}
@@ -62,21 +63,23 @@ const Category = () => {
                   <ul>
                     {categoryData.slice(0, 1).map((category: any) => (
                       <li key={category.id}>
-                        <div className="focus:outline-none h-[695px] shadow-md border-gray-100 border-2 rounded-xl pb-3 mt-5">
+                        <div className="focus:outline-none  lg:w-full h-[355px] lg:h-[710px] shadow-md border-gray-100 border-2 rounded-xl pb-3 lg:mt-5">
                           <img
                             alt="code editor"
                             width={500}
                             height={500}
-                            className="focus:outline-none w-full h-4/5 object-cover rounded-2xl"
+                            className="focus:outline-none w-full lg:h-4/5 object-cover rounded-2xl"
                             src={category.imageUrl}
                           />
-                          <div className="px-2 pt-3">
+                          <div className="px-2 pt-3 lg:pt-6">
                             <h1 className="focus:outline-none text-4xl font-OpenSans text-gray-900 font-extrabold  tracking-wider">
                               Travel to {category.name}
                             </h1>
                             <div className="flex gap-3 normal-case translate-y-4">
                               <ChipCustom text="Tours" />
-                              <ChipCustom text={category.name} />
+                              <ChipCustom
+                                text={category.name.split(" ").slice(0, 2)}
+                              />
                               <ChipCustom text="Travels" />
                               <Arrow
                                 onClick={() =>
@@ -96,7 +99,7 @@ const Category = () => {
                         {categoryData.slice(1, 3).map((category: any) => (
                           <li key={category.id}>
                             <div
-                              className="focus:outline-none shadow-md border-gray-100 border-2 rounded-xl mt-5"
+                              className="focus:outline-none shadow-md lg:w-full border-gray-100 border-2 rounded-xl mb-8 lg:mt-5"
                               aria-label="card 2">
                               <img
                                 width={500}
@@ -113,7 +116,12 @@ const Category = () => {
                                 </h1>
                                 <div className="flex gap-3 normal-case translate-y-3 my-1">
                                   <ChipCustom text="Tours" />
-                                  <ChipCustom text={category.name} />
+                                  <ChipCustom
+                                    text={category.name
+                                      .split(" ")
+                                      .slice(0, 2)
+                                      .join(" ")}
+                                  />
                                   <ChipCustom text="Travels" />
                                   <Arrow
                                     onClick={() =>

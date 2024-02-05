@@ -25,14 +25,13 @@ const index: React.FC = () => {
         <Navbar />
         <Banner />
         <div className="px-4 lg:px-16 pt-0">
-            <Value />
-          <div className="hidden sm:block">
-            <Promo />
-            <Activity />
-            <About />
-            <Category />
-            <Booking />
-          </div>
+          <Value />
+          <Promo />
+          <Activity />
+          <About />
+          <Category />
+          <div className="hidden lg:block"></div>
+          <Booking />
         </div>
         <Footer />
       </div>

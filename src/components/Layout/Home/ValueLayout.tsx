@@ -34,8 +34,8 @@ const valueList = [
 const Value = () => {
   return (
     <div className="flex flex-col lg:justify-center lg:items-center mt-8 lg:my-20">
-      <h1 className="text-5xl font-bold">Top values for you</h1>
-      <p className="my-5 font-extralight lg:font-medium w-64 lg:w-full">
+      <h1 className="text-5xl font-bold font-OpenSans">Top values for you</h1>
+      <p className="my-5 lg:text-center font-extralight lg:font-medium w-64 lg:w-full lg:mb-10">
         Try variety of benefits when using our services
       </p>
 
@@ -51,8 +51,10 @@ const Value = () => {
                   strokeWidth: 1.5,
                 })}
                 <div className="flex flex-col lg:m-0">
-                  <span className="text-black mb-1 lg:mb-0">{label}</span>
-                  <span className="text-gray-600 text-sm w-44 lg:w-2/3 lg:text-center ">
+                  <span className="text-black mb-1 lg:mb-0 lg:text-center">
+                    {label}
+                  </span>
+                  <span className="text-gray-600 text-sm w-44 lg:w-2/3 lg:text-center lg:mx-auto">
                     {description}
                   </span>
                 </div>
