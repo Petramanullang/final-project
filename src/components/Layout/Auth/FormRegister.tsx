@@ -217,7 +217,7 @@ const Register: React.FC = () => {
               src="/img/building1.png"
               width={200}
               height={200}
-              className="absolute lg:block bottom-0 left-[42rem] w-56"
+              className="hidden lg:block absolute bottom-0 left-[42rem] w-56"
             />
             <img
               alt="logo"
