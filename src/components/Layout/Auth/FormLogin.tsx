@@ -35,7 +35,7 @@ const Login = () => {
         `${apiUrl}/api/v1/login`,
         { email, password },
         {
-          headers: { 
+          headers: {
             apiKey: `${apiKey}`,
             "Content-Type": "application/json",
           },
@@ -69,8 +69,8 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <div className="bg-auth-image bg-cover brightness-95 lg:bg-none">
+    <>
+      <div className="bg-auth-image overflow-hidden bg-cover brightness-95 lg:bg-none">
         <div className="h-screen flex">
           <div className="hidden lg:flex w-1/2 bg-auth-image bg-cover justify-around pt-20 z-10">
             <div className="flex flex-col items-center">
@@ -177,7 +177,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
