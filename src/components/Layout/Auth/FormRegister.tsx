@@ -81,7 +81,7 @@ const Register: React.FC = () => {
 
   return (
     <>
-      <div className="bg-auth-image lg:h-auto brightness-95 lg:bg-none">
+      <div className="bg-auth-image bg-cover brightness-95 lg:bg-none">
         <div className="h-screen flex">
           {/* Login Image */}
           <div className="hidden lg:flex w-1/2 bg-auth-image bg-cover justify-around pt-20 z-10">

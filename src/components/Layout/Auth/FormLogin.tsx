@@ -69,8 +69,8 @@ const Login = () => {
   };
 
   return (
-    <>
-      <div className="bg-auth-image brightness-95 lg:bg-none">
+    <div>
+      <div className="bg-auth-image bg-cover brightness-95 lg:bg-none">
         <div className="h-screen flex">
           <div className="hidden lg:flex w-1/2 bg-auth-image bg-cover justify-around pt-20 z-10">
             <div className="flex flex-col items-center">
@@ -85,7 +85,7 @@ const Login = () => {
           </div>
 
           {/* Login Form */}
-          <div className="bg-transparent flex mx-auto lg:w-1/2 justify-center mt-40 lg:items-center">
+          <div className="bg-transparent flex mx-auto lg:w-1/2 justify-center items-center">
             <form
               className="lg:mt-8 lg:mb-20 lg:w-80 max-w-screen-lg"
               onSubmit={handleSubmit}>
@@ -177,7 +177,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
