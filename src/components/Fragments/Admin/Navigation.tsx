@@ -9,7 +9,7 @@ import {
   Card,
 } from "@material-tailwind/react";
 import {
-  Bars3Icon,
+  Bars3BottomLeftIcon,
   MapIcon,
   XMarkIcon,
   UserIcon,
@@ -17,7 +17,6 @@ import {
   TagIcon,
   BanknotesIcon,
 } from "@heroicons/react/24/outline";
-import CRUD from "./Card";
 
 const sidebarMenu = [
   {
@@ -48,14 +47,14 @@ const sidebarMenu = [
 ];
 
 const Sidebar = () => {
-  const [isDrawerOpen, setIsDrawerOpen] = React.useState(true);
+  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 
   const openDrawer = () => setIsDrawerOpen(true);
   const closeDrawer = () => setIsDrawerOpen(false);
 
   return (
     <>
-      <div className="bg-gray-50">
+      <div className="bg-gray-200 shadow-lg">
         <IconButton
           placeholder={""}
           variant="text"
@@ -64,7 +63,7 @@ const Sidebar = () => {
           {isDrawerOpen ? (
             <XMarkIcon className="h-8 w-8 stroke-2" />
           ) : (
-            <Bars3Icon className="h-8 w-8 stroke-2" />
+            <Bars3BottomLeftIcon className="h-8 w-8 stroke-2 " />
           )}
         </IconButton>
         <Drawer placeholder={""} open={isDrawerOpen} onClose={closeDrawer}>
@@ -97,7 +96,6 @@ const Sidebar = () => {
             </List>
           </Card>
         </Drawer>
-        <CRUD />
       </div>
     </>
   );

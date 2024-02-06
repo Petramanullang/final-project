@@ -1,10 +1,10 @@
 import React from "react";
-import Dashboard from "@/components/Fragments/Admin/Form";
+import Banner from "@/components/Layout/Admin/BannerLayout";
 
 const dashboard = () => {
   return (
     <div>
-      <Dashboard />
+      <Banner />
     </div>
   );
 };

@@ -15,7 +15,7 @@ import {
   ChevronDownIcon,
   Cog6ToothIcon,
   PowerIcon,
-  Bars3Icon,
+  Bars3BottomRightIcon,
   AdjustmentsHorizontalIcon,
 } from "@heroicons/react/24/solid";
 
@@ -201,7 +201,7 @@ const NavbarLayout = () => {
             variant="text"
             onClick={toggleIsNavOpen}
             className="ml-auto mr-2 lg:hidden">
-            <Bars3Icon className="h-9 w-9" />
+            <Bars3BottomRightIcon className="h-9 w-9" />
           </IconButton>
           <div className="absolute right-10">
             {!isLoggedIn && (

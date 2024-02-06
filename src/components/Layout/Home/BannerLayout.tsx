@@ -75,7 +75,7 @@ const Banner = () => {
                   color="white"
                   size="lg"
                   onClick={handleNext}
-                  className="!absolute bottom-14 lg:top-3/4 left-20 translate-y-10 lg:translate-x-44 border rounded-full">
+                  className="!absolute bottom-14 lg:top-3/4 left-20 lg:left-12 translate-y-10 lg:translate-x-44 border rounded-full">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
