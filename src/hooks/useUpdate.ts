@@ -1,11 +1,15 @@
 import { useState } from "react";
 
-const useDelete = () => {
+const useUpdate = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<any | null>(null);
 
-  const deleteData = async (endpoint: string, resourceId: string) => {
+  const updateData = async (
+    endpoint: string,
+    resourceId: string,
+    updatedData: any
+  ) => {
     setLoading(true);
 
     try {
@@ -23,31 +27,31 @@ const useDelete = () => {
         "Content-Type": "application/json",
       };
 
-      console.log(headers);
-
       const response = await fetch(`${apiUrl}/${endpoint}/${resourceId}`, {
-        method: "DELETE",
+        method: "POST",
         headers: headers,
+        body: JSON.stringify(updatedData),
       });
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(`Failed to delete resource: ${errorData.message}`);
+        throw new Error(`Failed to update resource: ${errorData.message}`);
       }
 
       const result = await response.json();
       setData(result);
-      window.location.reload();
+      // Anda mungkin menangani logika navigasi atau pembaruan UI di sini daripada me-reload seluruh halaman
+      // Misalnya, Anda dapat memperbarui state untuk me-render komponen tertentu
     } catch (error: any) {
       setError(
-        error.message || "Something went wrong while deleting the resource."
+        error.message || "Something went wrong while updating the resource."
       );
     } finally {
       setLoading(false);
     }
   };
 
-  return { loading, error, data, deleteData };
+  return { loading, error, data, updateData };
 };
 
-export default useDelete;
+export default useUpdate;

@@ -13,15 +13,13 @@ export interface ModalProps {
   handleConfirm: () => void;
 }
 
-const Modal: React.FC<ModalProps> = ({ open, handleOpen, handleConfirm }) => {
+const DeleteModal: React.FC<ModalProps> = ({ open, handleOpen, handleConfirm }) => {
   const [internalOpen, setInternalOpen] = useState(false);
 
   const handleInternalOpen = () => setInternalOpen(!internalOpen);
 
   const handleCancel = () => {
-    // Set internalOpen to false to close the modal
     setInternalOpen(false);
-    // Call the external handleOpen to ensure consistent state management
     handleOpen();
   };
 
@@ -57,4 +55,4 @@ const Modal: React.FC<ModalProps> = ({ open, handleOpen, handleConfirm }) => {
   );
 };
 
-export default Modal;
+export default DeleteModal;

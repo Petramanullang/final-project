@@ -1,18 +1,17 @@
-import Sidebar from "@/components/Fragments/Admin/Navigation";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import useDelete from "@/hooks/useDelete";
-import Modal, { ModalProps } from "@/components/Fragments/Admin/Modal";
+import Modal from "@/components/Fragments/Admin/DeleteModal";
+import CreateBannerModal from "@/components/Fragments/Admin/CreateBannerModal";
+import UpdateBannerModal from "@/components/Fragments/Admin/UpdateBannerModal";
+import PreviewBanner from "@/components/Fragments/Admin/PreviewBanner";
+import Sidebar from "@/components/Fragments/Admin/Navigation";
 import {
   Menu,
   MenuHandler,
   MenuList,
   MenuItem,
   Button,
-  Dialog,
-  DialogHeader,
-  DialogBody,
-  DialogFooter,
 } from "@material-tailwind/react";
 import {
   EyeIcon,
@@ -26,30 +25,99 @@ interface BannerData {
   name: string;
   createdAt: string;
   updatedAt: string;
+  imageUrl: string;
 }
 
 const apiUrl = process.env.NEXT_PUBLIC_API as string;
 const apiKey = process.env.NEXT_PUBLIC_API_TOKEN as string;
 
 const BannerLayout = () => {
-  const [bannersData, setBannersData] = useState([]);
+  const [bannersData, setBannersData] = useState<BannerData[]>([]);
   const { loading, error, data, deleteData } = useDelete();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedResourceId, setSelectedResourceId] = useState(null);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [selectedResourceId, setSelectedResourceId] = useState<number | null>(
+    null
+  );
+  const [currentPreviewImageUrl, setCurrentPreviewImageUrl] = useState<
+    string | null
+  >(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [bannerDataForEdit, setBannerDataForEdit] = useState<BannerData | null>(
+    null
+  );
+  const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
+  const [selectedBannerForPreview, setSelectedBannerForPreview] =
+    useState<BannerData | null>(null);
 
-  const handleDelete = (resourceId: any) => {
-    // Show the modal to confirm deletion
+  const handleOpenPreviewModal = (bannerData: BannerData) => {
+    setSelectedBannerForPreview(bannerData);
+    setIsPreviewModalOpen(true);
+  };
+
+  const handleClosePreviewModal = () => {
+    setSelectedBannerForPreview(null);
+    setIsPreviewModalOpen(false);
+  };
+
+  const handleConfirmEdit = () => {
+    handleCloseEditModal();
+  };
+
+  const handleOpenEditModal = (bannerData: BannerData | null) => {
+    if (bannerData !== null) {
+      setBannerDataForEdit(bannerData);
+      setIsEditModalOpen(true);
+    }
+    // Handle case when bannerData is null, if needed
+  };
+
+  const handleCloseEditModal = () => {
+    setIsEditModalOpen(false);
+  };
+
+  const handleConfirmCreate = () => {
+    handleCloseCreateModal();
+  };
+
+  const handleNameChange = (value: string) => {
+    // Implementasi fungsi handleNameChange
+    // Pastikan value adalah string sebelum melakukan operasi apapun
+  };
+
+  const handleFileChange = (file: File) => {
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        if (event.target && event.target.result) {
+          const base64Url = event.target.result.toString();
+          setCurrentPreviewImageUrl(base64Url);
+        }
+      };
+
+      if (reader.readAsDataURL) {
+        reader.readAsDataURL(file);
+      }
+    }
+  };
+
+  const handleOpenCreateModal = () => {
+    setIsCreateModalOpen(true);
+  };
+
+  const handleCloseCreateModal = () => {
+    setIsCreateModalOpen(false);
+  };
+
+  const handleDelete = (resourceId: number) => {
     setIsModalOpen(true);
     setSelectedResourceId(resourceId);
   };
 
   const handleConfirmDelete = () => {
-    // Perform the actual deletion
     if (selectedResourceId) {
-      deleteData("api/v1/delete-banner", selectedResourceId);
+      deleteData("api/v1/delete-banner", selectedResourceId.toString());
     }
-
-    // Close the modal after deletion
     setIsModalOpen(false);
   };
 
@@ -91,7 +159,9 @@ const BannerLayout = () => {
       <div>
         <h1 className="text-3xl font-bold mx-44 text-black my-4">Banner</h1>
         <div className="relative w-3/4 mx-auto bg-gray-500 p-5 pt-16 rounded-xl">
-          <button className="bg-gray-700 text-white normal-case absolute right-3 top-3 p-2 px-5 rounded-lg hover:bg-gray-600">
+          <button
+            onClick={handleOpenCreateModal}
+            className="bg-gray-700 text-white normal-case absolute right-3 top-3 p-2 px-5 rounded-lg hover:bg-gray-600">
             Add Item
           </button>
           <ul className="flex justify-between px-2 text-white bg-gray-600 rounded-md pr-48">
@@ -122,10 +192,12 @@ const BannerLayout = () => {
                       <MenuList placeholder={""} className="divide-y py-3">
                         <MenuItem
                           placeholder={""}
-                          className="flex rounded-none hover:rounded-md">
+                          className="flex rounded-none hover:rounded-md"
+                          onClick={() => handleOpenPreviewModal(data)}>
                           <EyeIcon className="w-4 h-4 mr-2" /> Preview
                         </MenuItem>
                         <MenuItem
+                          onClick={() => handleOpenEditModal(data)}
                           placeholder={""}
                           className="flex rounded-none hover:rounded-md">
                           <PencilSquareIcon className="w-4 h-4 mr-2" /> Edit
@@ -151,6 +223,36 @@ const BannerLayout = () => {
             open={isModalOpen}
             handleOpen={() => setIsModalOpen(false)}
             handleConfirm={handleConfirmDelete}
+          />
+        )}
+        {isCreateModalOpen && (
+          <CreateBannerModal
+            open={isCreateModalOpen}
+            handleOpen={handleOpenCreateModal}
+            handleConfirm={handleConfirmCreate}
+            handleCancel={handleCloseCreateModal}
+            onNameChange={handleNameChange}
+            onFileChange={handleFileChange}
+            previewImageUrl={currentPreviewImageUrl}
+            setPreviewImageUrl={setCurrentPreviewImageUrl}
+            handleClose={handleCloseCreateModal}
+          />
+        )}
+        {isEditModalOpen && bannerDataForEdit && (
+          <UpdateBannerModal
+            open={isEditModalOpen}
+            handleOpen={() => handleOpenEditModal(bannerDataForEdit)}
+            handleConfirm={handleConfirmEdit}
+            handleCancel={handleCloseEditModal}
+            bannerData={bannerDataForEdit}
+          />
+        )}
+        {isPreviewModalOpen && selectedBannerForPreview && (
+          <PreviewBanner
+            open={isPreviewModalOpen}
+            handleOpen={handleClosePreviewModal}
+            handleConfirm={handleClosePreviewModal}
+            bannerData={selectedBannerForPreview}
           />
         )}
       </div>

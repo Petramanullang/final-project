@@ -17,36 +17,39 @@ import {
   TagIcon,
   BanknotesIcon,
 } from "@heroicons/react/24/outline";
-
-const sidebarMenu = [
-  {
-    label: "User",
-    icon: UserIcon,
-    onClick: () => {},
-  },
-  {
-    label: "Banner",
-    icon: MapIcon,
-    onClick: () => {},
-  },
-  {
-    label: "Promo",
-    icon: BanknotesIcon,
-    onClick: () => {},
-  },
-  {
-    label: "Activities",
-    icon: GlobeAltIcon,
-    onClick: () => {},
-  },
-  {
-    label: "Categories",
-    icon: TagIcon,
-    onClick: () => {},
-  },
-];
+import { useRouter } from "next/router";
+useRouter
 
 const Sidebar = () => {
+const navigate = useRouter().push
+
+  const sidebarMenu = [
+    {
+      label: "User",
+      icon: UserIcon,
+      onClick: () => {},
+    },
+    {
+      label: "Banner",
+      icon: MapIcon,
+      onClick: () => navigate("/banner"),
+    },
+    {
+      label: "Promo",
+      icon: BanknotesIcon,
+      onClick: () => {},
+    },
+    {
+      label: "Activities",
+      icon: GlobeAltIcon,
+      onClick: () => {},
+    },
+    {
+      label: "Categories",
+      icon: TagIcon,
+      onClick: () => {},
+    },
+  ];
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 
   const openDrawer = () => setIsDrawerOpen(true);
