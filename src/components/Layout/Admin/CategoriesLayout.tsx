@@ -21,11 +21,11 @@ import {
 } from "@heroicons/react/24/outline";
 
 interface CategoryData {
-  id: number;
+  id: any;
   name: string;
   createdAt: string;
   updatedAt: string;
-  // Add additional properties as needed
+  imageUrl: any;
 }
 
 const apiUrl = process.env.NEXT_PUBLIC_API as string;
@@ -43,9 +43,12 @@ const CategoriesLayout = () => {
     string | null
   >(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
   const [categoryDataForEdit, setCategoryDataForEdit] =
     useState<CategoryData | null>(null);
+    
   const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
+  
   const [selectedCategoryForPreview, setSelectedCategoryForPreview] =
     useState<CategoryData | null>(null);
 

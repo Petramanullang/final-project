@@ -9,7 +9,7 @@ import {
 import useUpdate from "@/hooks/useUpdate";
 import useUpload from "@/hooks/useUpload";
 
-interface UpdateCategoriesModalProps {
+export interface UpdateCategoriesModalProps {
   open: boolean;
   handleOpen: () => void;
   handleConfirm: () => void;

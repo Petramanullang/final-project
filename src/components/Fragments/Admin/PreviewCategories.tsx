@@ -22,7 +22,6 @@ interface CategoryData {
   id: string;
 }
 
-
 const PreviewCategories: React.FC<
   ModalProps & { categoryData: CategoryData }
 > = ({ open, handleOpen, handleConfirm, categoryData }) => {

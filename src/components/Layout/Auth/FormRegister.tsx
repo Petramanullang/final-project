@@ -26,15 +26,19 @@ const Register: React.FC = () => {
   const [password, setPassword] = useState("");
   const [passwordRepeat, setpasswordRepeat] = useState("");
   const [role, setRole] = useState("");
-  // const [picture, setPicture] = useState("");
   const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
   const [profilePicture, setProfilePicture] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
+  const [uploadedImageUrl, setUploadedImageUrl] = useState("");
   const router = useRouter();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+
+    console.log(password.length);
+
+    console.log("Password:", password);
 
     if (password.length < 6 || passwordRepeat.length < 6) {
       setError("Password must be at least 6 characters long");
@@ -49,7 +53,15 @@ const Register: React.FC = () => {
     try {
       const response = await axios.post(
         `${apiUrl}/api/v1/register`,
-        { email, password, passwordRepeat, name, role, profilePicture, phone },
+        {
+          email,
+          password,
+          passwordRepeat,
+          name,
+          role,
+          profilePicture: uploadedImageUrl, // Gunakan URL gambar yang diunggah
+          phone,
+        },
         {
           headers: {
             apiKey: `${apiKey}`,
@@ -57,6 +69,7 @@ const Register: React.FC = () => {
           },
         }
       );
+
       router.push("/login");
       console.log(response.data);
     } catch (error: any) {
@@ -74,9 +87,33 @@ const Register: React.FC = () => {
     }
   };
 
-  const handlePictureChange = (e: any) => {
+  const handlePictureChange = async (e: any) => {
     const file = e.target.files[0];
-    setProfilePicture(file);
+
+    try {
+      const formData = new FormData();
+      formData.append("image", file);
+
+      const response = await axios.post(
+        `${apiUrl}/api/v1/upload-image`,
+        formData,
+        {
+          headers: {
+            apiKey: `${apiKey}`,
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      // Dapatkan URL gambar yang diunggah
+      const imageUrl = response.data.data.imageUrl;
+      setUploadedImageUrl(imageUrl);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      // Handle error jika diperlukan
+    }
   };
 
   return (
@@ -154,7 +191,7 @@ const Register: React.FC = () => {
                 <div className="relative h-11 w-full min-w-[200px]">
                   <input
                     type={showPassword ? "text" : "password"}
-                    value={password}
+                    value={passwordRepeat}
                     onChange={(e) => setpasswordRepeat(e.target.value)}
                     autoComplete="on"
                     className={inputStyle()}
@@ -171,6 +208,7 @@ const Register: React.FC = () => {
                     )}
                   </div>
                 </div>
+
                 <div className="relative h-11 w-full min-w-[200px]">
                   <input
                     type=""
