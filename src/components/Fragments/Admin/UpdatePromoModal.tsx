@@ -15,7 +15,7 @@ interface UpdatePromoModalProps {
   handleConfirm: () => void;
   handleCancel: () => void;
   promoData: {
-    id: string;
+    id: any;
     title: string;
     imageUrl: string;
     promo_code: string;

@@ -21,11 +21,16 @@ import {
 } from "@heroicons/react/24/outline";
 
 interface PromoData {
-  id: number;
+  id: any;
   title: string;
-  createdAt: string;
-  updatedAt: string;
   imageUrl: string;
+  promo_code: string;
+  promo_discount_price: number;
+  minimum_claim_price: number;
+  description: string;
+  terms_condition: string;
+  createdAt: any;
+  updatedAt: any;
 }
 
 const apiUrl = process.env.NEXT_PUBLIC_API as string;
