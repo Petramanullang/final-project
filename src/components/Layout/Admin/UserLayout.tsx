@@ -43,10 +43,10 @@ const User = ({ imageUrl }: any) => {
     checkToken();
   }, [router]);
 
-  // const handleLogout = () => {
-  //   localStorage.removeItem("accessToken");
-  //   router.push("/login");
-  // }
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    router.push("/login");
+  }
 
   const modifyImageUrl = (url: string | null) => {
     if (!url || url.trim() === "") {

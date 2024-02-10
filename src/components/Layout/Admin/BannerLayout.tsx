@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import useDelete from "@/hooks/useDelete";
 import Modal from "@/components/Fragments/Admin/DeleteModal";
-import CreateBannerModal from "@/components/Fragments/Admin/CreateBanner";
-import UpdateBannerModal from "@/components/Fragments/Admin/UpdateBannerModal";
-import PreviewBanner from "@/components/Fragments/Admin/PreviewBanner";
+import CreateBannerModal from "@/components/Fragments/Admin/Banner/CreateBanner";
+import UpdateBannerModal from "@/components/Fragments/Admin/Banner/UpdateBannerModal";
+import PreviewBanner from "@/components/Fragments/Admin/Banner/PreviewBanner";
 import Sidebar from "@/components/Fragments/Admin/Navigation";
+import { useRouter } from "next/router";
 import {
   Menu,
   MenuHandler,
@@ -32,6 +33,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API as string;
 const apiKey = process.env.NEXT_PUBLIC_API_TOKEN as string;
 
 const BannerLayout = () => {
+  const router = useRouter();
   const [bannersData, setBannersData] = useState<BannerData[]>([]);
   const { loading, error, data, deleteData } = useDelete();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -124,6 +126,13 @@ const BannerLayout = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const token = localStorage.getItem("accessToken");
+
+        if (!token) {
+          router.push("/login");
+          return;
+        }
+
         const loginApiUrl = `${apiUrl}/api/v1/banners`;
         const res = await axios.get(loginApiUrl, {
           headers: {
@@ -142,7 +151,7 @@ const BannerLayout = () => {
     };
 
     fetchData();
-  }, []);
+  }, [router]);
 
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {

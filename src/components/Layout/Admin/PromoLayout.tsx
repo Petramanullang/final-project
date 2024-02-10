@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import useDelete from "@/hooks/useDelete";
 import Modal from "@/components/Fragments/Admin/DeleteModal";
-import CreatePromoModal from "@/components/Fragments/Admin/CreatePromo";
-import UpdatePromoModal from "@/components/Fragments/Admin/UpdatePromoModal";
-import PreviewPromo from "@/components/Fragments/Admin/PreviewPromo";
+import CreatePromoModal from "@/components/Fragments/Admin/Promo/CreatePromo";
+import UpdatePromoModal from "@/components/Fragments/Admin/Promo/UpdatePromoModal";
+import PreviewPromo from "@/components/Fragments/Admin/Promo/PreviewPromo";
 import Sidebar from "@/components/Fragments/Admin/Navigation";
+import { useRouter } from "next/router";
 import {
   Menu,
   MenuHandler,
@@ -37,6 +38,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API as string;
 const apiKey = process.env.NEXT_PUBLIC_API_TOKEN as string;
 
 const PromoLayout = () => {
+  const router = useRouter();
   const [promosData, setPromosData] = useState<PromoData[]>([]);
   const { loading, error, data, deleteData } = useDelete();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -123,6 +125,13 @@ const PromoLayout = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const token = localStorage.getItem("accessToken");
+
+        if (!token) {
+          router.push("/login");
+          return;
+        }
+
         const promoApiUrl = `${apiUrl}/api/v1/promos`;
         const res = await axios.get(promoApiUrl, {
           headers: {
@@ -141,7 +150,7 @@ const PromoLayout = () => {
     };
 
     fetchData();
-  }, []);
+  }, [router]);
 
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {

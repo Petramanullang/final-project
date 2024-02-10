@@ -16,6 +16,7 @@ import {
   GlobeAltIcon,
   TagIcon,
   BanknotesIcon,
+  BackspaceIcon,
 } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 useRouter;
@@ -24,11 +25,11 @@ const Sidebar = () => {
   const navigate = useRouter().push;
 
   const sidebarMenu = [
-    {
-      label: "User",
-      icon: UserIcon,
-      onClick: () => {},
-    },
+    // {
+    //   label: "User",
+    //   icon: UserIcon,
+    //   onClick: () => {},
+    // },
     {
       label: "Banner",
       icon: MapIcon,
@@ -48,6 +49,11 @@ const Sidebar = () => {
       label: "Categories",
       icon: TagIcon,
       onClick: () => navigate("/categories"),
+    },
+    {
+      label: "Back to website",
+      icon: BackspaceIcon,
+      onClick: () => navigate("/"),
     },
   ];
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
@@ -69,6 +75,7 @@ const Sidebar = () => {
             <Bars3BottomLeftIcon className="h-8 w-8 stroke-2 " />
           )}
         </IconButton>
+        
         <Drawer placeholder={""} open={isDrawerOpen} onClose={closeDrawer}>
           <Card
             placeholder={""}
@@ -97,6 +104,7 @@ const Sidebar = () => {
                 </ListItem>
               ))}
             </List>
+
           </Card>
         </Drawer>
       </div>

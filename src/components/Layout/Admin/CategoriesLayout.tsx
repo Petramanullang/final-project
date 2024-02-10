@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import useDelete from "@/hooks/useDelete";
 import Modal from "@/components/Fragments/Admin/DeleteModal";
-import CreateCategoryModal from "@/components/Fragments/Admin/CreateCategories";
-import UpdateCategoryModal from "@/components/Fragments/Admin/UpdateCategories";
-import PreviewCategory from "@/components/Fragments/Admin/PreviewCategories";
+import CreateCategoryModal from "@/components/Fragments/Admin/Categories/CreateCategories";
+import UpdateCategoryModal from "@/components/Fragments/Admin/Categories/UpdateCategories";
+import PreviewCategory from "@/components/Fragments/Admin/Categories/PreviewCategories";
 import Sidebar from "@/components/Fragments/Admin/Navigation";
+import { useRouter } from "next/router";
 import {
   Menu,
   MenuHandler,
@@ -32,6 +33,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API as string;
 const apiKey = process.env.NEXT_PUBLIC_API_TOKEN as string;
 
 const CategoriesLayout = () => {
+  const router = useRouter();
   const [categoriesData, setCategoriesData] = useState<CategoryData[]>([]);
   const { loading, error, data, deleteData } = useDelete();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -46,9 +48,9 @@ const CategoriesLayout = () => {
 
   const [categoryDataForEdit, setCategoryDataForEdit] =
     useState<CategoryData | null>(null);
-    
+
   const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
-  
+
   const [selectedCategoryForPreview, setSelectedCategoryForPreview] =
     useState<CategoryData | null>(null);
 
@@ -81,10 +83,7 @@ const CategoriesLayout = () => {
     handleCloseCreateModal();
   };
 
-  const handleNameChange = (value: string) => {
-    // Implementasi fungsi handleNameChange
-    // Pastikan value adalah string sebelum melakukan operasi apapun
-  };
+  const handleNameChange = (value: string) => {};
 
   const handleFileChange = (file: File) => {
     if (file) {
@@ -125,6 +124,13 @@ const CategoriesLayout = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const token = localStorage.getItem("accessToken");
+
+        if (!token) {
+          router.push("/login");
+          return;
+        }
+
         const categoriesApiUrl = `${apiUrl}/api/v1/categories`;
         const res = await axios.get(categoriesApiUrl, {
           headers: {
@@ -143,7 +149,7 @@ const CategoriesLayout = () => {
     };
 
     fetchData();
-  }, []);
+  }, [router]);
 
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {

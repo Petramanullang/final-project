@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import useDelete from "@/hooks/useDelete";
 import Modal from "@/components/Fragments/Admin/DeleteModal";
-import CreateActivities from "@/components/Fragments/Admin/CreateActivities";
+import CreateActivities from "@/components/Fragments/Admin/Activities/CreateActivities";
 // import UpdateActivityModal from "@/components/Fragments/Admin/UpdateActivityModal";
 // import PreviewActivity from "@/components/Fragments/Admin/PreviewActivity";
 import Sidebar from "@/components/Fragments/Admin/Navigation";
+import { useRouter } from "next/router";
 import {
   Menu,
   MenuHandler,
@@ -32,6 +33,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API as string;
 const apiKey = process.env.NEXT_PUBLIC_API_TOKEN as string;
 
 const ActivitiesLayout = () => {
+  const router = useRouter();
   const [activitiesData, setActivitiesData] = useState<ActivityData[]>([]);
   const { loading, error, data, deleteData } = useDelete();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -49,7 +51,6 @@ const ActivitiesLayout = () => {
   const [selectedActivityForPreview, setSelectedActivityForPreview] =
     useState<ActivityData | null>(null);
   const [title, setTitle] = useState("");
-  
 
   const handleTitleChange = (value: string) => {
     setTitle(value);
@@ -82,8 +83,6 @@ const ActivitiesLayout = () => {
     setSelectedActivityForPreview(activityData);
     setIsPreviewModalOpen(true);
   };
-
-  
 
   const handleClosePreviewModal = () => {
     setSelectedActivityForPreview(null);
@@ -153,6 +152,13 @@ const ActivitiesLayout = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const token = localStorage.getItem("accessToken");
+
+        if (!token) {
+          router.push("/login");
+          return;
+        }
+
         const activitiesApiUrl = `${apiUrl}/api/v1/activities`;
         const res = await axios.get(activitiesApiUrl, {
           headers: {
@@ -171,7 +177,7 @@ const ActivitiesLayout = () => {
     };
 
     fetchData();
-  }, []);
+  }, [router]);
 
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {

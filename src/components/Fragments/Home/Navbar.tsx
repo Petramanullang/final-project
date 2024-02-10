@@ -50,11 +50,11 @@ function ProfileMenu({ router }: any) {
       icon: AdjustmentsHorizontalIcon,
       onClick: () => router.push("/dashboard"),
     },
-    {
-      label: "Edit Profile",
-      icon: Cog6ToothIcon,
-      onClick: () => router.push("/dashboard/user"),
-    },
+    // {
+    //   label: "Edit Profile",
+    //   icon: Cog6ToothIcon,
+    //   onClick: () => router.push("/dashboard/user"),
+    // },
     {
       label: "Log out",
       icon: PowerIcon,

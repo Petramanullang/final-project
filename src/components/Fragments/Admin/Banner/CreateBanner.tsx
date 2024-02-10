@@ -51,11 +51,9 @@ const CreateBannerModal: React.FC<CreateBannerModalProps> = ({
     const file = e.target.files && e.target.files[0];
 
     try {
-      // Menggunakan fungsi uploadImage dari useUpload
       const uploadedImageUrl = await uploadImage(file);
       console.log("Uploaded Image URL:", uploadedImageUrl);
 
-      // Setelah pemanggilan uploadImage, imageUrl dapat diakses dari state useUpload
       setPreviewImageUrl(uploadedImageUrl || "");
       setResetPreviewImage(false);
     } catch (error) {
@@ -67,6 +65,7 @@ const CreateBannerModal: React.FC<CreateBannerModalProps> = ({
     setBannerName(e.target.value);
   };
 
+  // Function yang menghandle pembuatan banner berdasarkan data yang diberikan dari API
   const createBanner = async (newData: any) => {
     try {
       console.log("Creating banner...");
@@ -76,10 +75,10 @@ const CreateBannerModal: React.FC<CreateBannerModalProps> = ({
         return;
       }
 
-      // Pastikan bahwa createData dipanggil dengan benar, dan tunggu responsnya
+      // Pemanggilan API untuk membuat banner
       const response = await createData("api/v1/create-banner", {
         imageUrl: previewImageUrl,
-        name: newData.name, // Pastikan nilai 'name' disertakan
+        name: newData.name,
       });
 
       console.log("Banner creation response:", response);
@@ -95,12 +94,10 @@ const CreateBannerModal: React.FC<CreateBannerModalProps> = ({
         return;
       }
 
-      // Menunggu sampai imageUrl tersedia
       while (!imageUrl) {
         await new Promise((resolve) => setTimeout(resolve, 100)); // Tunggu 100ms sebelum memeriksa lagi
       }
 
-      // Sekarang imageUrl dan bannerName sudah tersedia
       const newData = {
         imageUrl: imageUrl,
         name: bannerName,
