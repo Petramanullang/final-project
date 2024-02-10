@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import useDelete from "@/hooks/useDelete";
 import Modal from "@/components/Fragments/Admin/DeleteModal";
-import CreateBannerModal from "@/components/Fragments/Admin/CreateBannerModal";
+import CreateBannerModal from "@/components/Fragments/Admin/CreateBanner";
 import UpdateBannerModal from "@/components/Fragments/Admin/UpdateBannerModal";
 import PreviewBanner from "@/components/Fragments/Admin/PreviewBanner";
 import Sidebar from "@/components/Fragments/Admin/Navigation";

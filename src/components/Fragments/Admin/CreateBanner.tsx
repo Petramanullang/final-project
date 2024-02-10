@@ -111,6 +111,7 @@ const CreateBannerModal: React.FC<CreateBannerModalProps> = ({
       await createBanner(newData);
       handleConfirm();
       handleClose();
+      setResetPreviewImage(true);
       window.location.reload();
     } catch (error) {
       console.error("Error in handleConfirmCreate:", error);

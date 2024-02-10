@@ -18,10 +18,10 @@ import {
   BanknotesIcon,
 } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
-useRouter
+useRouter;
 
 const Sidebar = () => {
-const navigate = useRouter().push
+  const navigate = useRouter().push;
 
   const sidebarMenu = [
     {
@@ -37,17 +37,17 @@ const navigate = useRouter().push
     {
       label: "Promo",
       icon: BanknotesIcon,
-      onClick: () => {},
+      onClick: () => navigate("/promo"),
     },
     {
       label: "Activities",
       icon: GlobeAltIcon,
-      onClick: () => {},
+      onClick: () => navigate("/activities"),
     },
     {
       label: "Categories",
       icon: TagIcon,
-      onClick: () => {},
+      onClick: () => navigate("/categories"),
     },
   ];
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
