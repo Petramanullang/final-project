@@ -26,8 +26,6 @@ const CreateBannerModal: React.FC<CreateBannerModalProps> = ({
   handleOpen,
   handleConfirm,
   handleCancel,
-  onNameChange,
-  onFileChange,
   previewImageUrl,
   setPreviewImageUrl,
   handleClose,
