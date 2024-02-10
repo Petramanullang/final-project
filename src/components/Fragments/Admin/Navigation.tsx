@@ -33,22 +33,22 @@ const Sidebar = () => {
     {
       label: "Banner",
       icon: MapIcon,
-      onClick: () => navigate("/banner"),
+      onClick: () => navigate("/dashboard/banner"),
     },
     {
       label: "Promo",
       icon: BanknotesIcon,
-      onClick: () => navigate("/promo"),
+      onClick: () => navigate("/dashboard/promo"),
     },
     {
       label: "Activities",
       icon: GlobeAltIcon,
-      onClick: () => navigate("/activities"),
+      onClick: () => navigate("/dashboard/activities"),
     },
     {
       label: "Categories",
       icon: TagIcon,
-      onClick: () => navigate("/categories"),
+      onClick: () => navigate("/dashboard/categories"),
     },
     {
       label: "Back to website",
