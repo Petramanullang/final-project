@@ -53,7 +53,7 @@ const Category = () => {
     <>
       <div>
         <div>
-          <div id="category" className="lg:py-14">
+          <div id="category" className="lg:py-14 px-4 lg:px-16 pt-0">
             <div className="mx-auto container">
               <div
                 tabIndex={0}

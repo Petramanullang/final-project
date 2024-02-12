@@ -77,8 +77,6 @@ const User = ({ imageUrl }: any) => {
             {userData.map((user: any) => (
               <li key={user.id}>
                 <img
-                  width={500}
-                  height={500}
                   alt={user.name}
                   src={modifyImageUrl(user.profilePictureUrl)}
                   className="w-56 h-56 border"

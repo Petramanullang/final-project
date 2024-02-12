@@ -24,7 +24,7 @@ const index: React.FC = () => {
       <div className="bg-[#fefffe] ">
         <Navbar />
         <Banner />
-        <div className="px-4 lg:px-16 pt-0">
+
           <Value />
           <Promo />
           <Activity />
@@ -34,7 +34,7 @@ const index: React.FC = () => {
           <Booking />
         </div>
         <Footer />
-      </div>
+
     </>
   );
 };

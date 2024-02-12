@@ -33,13 +33,13 @@ const valueList = [
 
 const Value = () => {
   return (
-    <div className="flex flex-col lg:justify-center lg:items-center mt-8 lg:my-20">
-      <h1 className="text-5xl font-bold font-OpenSans">Top values for you</h1>
+    <div>
+      <p className="text-5xl font-bold mt-20 text-center">Top values for you</p>
       <p className="my-5 lg:text-center font-extralight lg:font-medium w-64 lg:w-full lg:mb-10">
         Try variety of benefits when using our services
       </p>
 
-      <ul className="relative lg:flex gap-5 -translate-x-2 lg:-translate-x-0 ">
+      <ul className="lg:flex gap-5">
         {valueList.map(({ label, icon, description }, key) => (
           <li key={label} className="pointer-events-none">
             <div className="font-bold text-black text-lg mb-8">

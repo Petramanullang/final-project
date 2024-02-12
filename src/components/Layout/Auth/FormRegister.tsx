@@ -146,9 +146,9 @@ const Register: React.FC = () => {
                 style={{ width: "200px", height: "auto" }}
                 className="hidden lg:block absolute top-16 right-0 z-20"
               />
-              <h1 className="text-5xl font-bold text-white lg:text-blue-400 text-center mb-10">
+              <p className="text-5xl font-bold text-white lg:text-blue-400 text-center mb-10">
                 REGISTER
-              </h1>
+              </p>
               <div className="mb-4 grid grid-cols-1 lg:grid-cols-2 gap-5">
                 <div className="relative h-11 w-full min-w-[200px]">
                   <input

@@ -34,7 +34,7 @@ const Activity = () => {
 
   return (
     <>
-      <div className="mt-10 lg:mt-20">
+      <div className="mt-10 lg:mt-20 px-4 lg:px-16 pt-0">
         <ul>
           {activityData.slice(0, 1).map((activity: any) => (
             <Link href={`/activity/${activity.id}`} key={activity.id}>

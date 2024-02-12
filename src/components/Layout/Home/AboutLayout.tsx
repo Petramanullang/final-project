@@ -4,7 +4,7 @@ import { Button } from "@material-tailwind/react";
 const AboutLayout = () => {
   return (
     <>
-      <div className="lg:flex justify-between mt-10 lg:mt-20">
+      <div className="lg:flex justify-between mt-10 lg:mt-20 px-4 lg:px-16 pt-0">
         <h1 className="text-4xl lg:text-6xl font-medium lg:w-1/2">
           Blog about <br /> traveling
         </h1>

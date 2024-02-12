@@ -38,8 +38,8 @@ const Promo = () => {
     fetchData();
   }, []);
   return (
-    <div className="pt-10">
-      <h1 className="text-left text-5xl mt-10 font-bold">Choose your tour</h1>
+    <div className="pt-10 px-4 lg:px-16">
+      <p className="text-left text-5xl mt-10 font-bold">Choose your tour</p>
       <ul className="pt-10 flex justify-center">
         <Marquee play={true} speed={20} className="rounded-md pt-5 pb-3 px-2">
           {promoData.slice(0, 5).map((promo: any) => (
@@ -53,8 +53,6 @@ const Promo = () => {
               <img
                 alt={promo.title}
                 src={promo.imageUrl}
-                width={500}
-                height={500}
                 className="w-72 h-72 object-cover mx-auto rounded-xl"
               />
               <div className="flex px-3 pt-5 pb-3">

@@ -93,14 +93,12 @@ const Login = () => {
                 <img
                   alt="logo"
                   src="/img/plane.png"
-                  width={500}
-                  height={500}
                   style={{ width: "200px", height: "auto" }}
                   className="hidden lg:block absolute top-16 right-0 z-20"
                 />
-                <h1 className="text-5xl font-bold text-white lg:text-blue-400 text-center">
+                <p className="text-5xl font-bold text-white lg:text-blue-400 text-center">
                   WELCOME
-                </h1>
+                </p>
                 <p className="text-sm text-white lg:text-gray-500 text-center">
                   Login with email
                 </p>
